@@ -1,8 +1,7 @@
 // Context-free grammar with the following production rules:
-// <Expression> = <Term> | <Term> + <Expression> |  <Term> - <Expression>
-// <Term> = <Factor> | <Factor> * <Term> | <Factor> / <Term>
-// <Factor> = <Float> | (<Expression>)
-// <Float> handled by stof
+// <Expression> = <Product> | <Product> + <Expression> |  <Product> - <Expression>
+// <Product> = <Value> | <Value> * <Product> | <Value> / <Product>
+// <Value> = float | (<Expression>)
 
 #include <iostream>
 #include <string>
@@ -53,7 +52,7 @@ size_t FindOp(string exp, char op1, char op2)
 
 float ReadExpression(string exp);
 
-float ReadFactor(string_exp)
+float ReadValue(string exp)
 {
     float val;
     if (exp.at(0)=='(')
@@ -69,7 +68,7 @@ float ReadFactor(string_exp)
     return val;
 }
 
-float ReadTerm(string exp)
+float ReadProduct(string exp)
 {
     float val;
     size_t pos;
@@ -79,19 +78,19 @@ float ReadTerm(string exp)
     if (pos)
     {
         op=exp.at(pos);
-        val=ReadFactor(exp.substr(0,pos));
+        val=ReadValue(exp.substr(0,pos));
         switch (op)
         {
             case '*':
-                val*=ReadTerm(exp.substr(pos+1));
+                val*=ReadProduct(exp.substr(pos+1));
                 break;
             case '/':
-                val/=ReadTerm(exp.substr(pos+1));
+                val/=ReadProduct(exp.substr(pos+1));
                 break;
         }
     }
     else
-        val=ReadFactor(exp);
+        val=ReadValue(exp);
     return val;
 }
 
@@ -105,7 +104,7 @@ float ReadExpression(string exp)
     if (pos)
     {
         op=exp.at(pos);
-        val=ReadTerm(exp.substr(0,pos));
+        val=ReadProduct(exp.substr(0,pos));
         switch (op)
         {
             case '+':
@@ -117,7 +116,7 @@ float ReadExpression(string exp)
         }
     }
     else
-        val=ReadTerm(exp);
+        val=ReadProduct(exp);
     return val;
 }
 
