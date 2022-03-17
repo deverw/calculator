@@ -3,8 +3,9 @@
 // <Product> = <Value> | <Value> * <Product> | <Value> / <Product>
 // <Value> = float | (<Expression>)
 
-#include <iostream>
-#include <string>
+#include <iostream> // cin, cout
+#include <string>   // string, stof
+#include <cstddef>  // size_t
 
 using namespace std;
 
@@ -17,6 +18,7 @@ size_t FindOp(string exp, char op1, char op2)
     size_t pos=0;
     uint brackets=0;
     char check_char;
+    bool op_found=false;
 
     while (pos<exp.length())
     {
@@ -37,16 +39,22 @@ size_t FindOp(string exp, char op1, char op2)
             pos++;      // don't look inside brackets
         else
             if (pos && (check_char==op1 || check_char==op2))    // ignore operator at pos=0
-                break;      // operator found
+            {
+                op_found=true;        // operator found
+                break;
+            }
             else
                 pos++;
     }
+    if (!op_found)
+        pos=0;
     if (brackets)
     {
          // entire expression evaluated and not all brackets closed
         error_msg="Close bracket missing.";
         pos=0;
     }
+
     return pos;
 }
 
@@ -61,10 +69,16 @@ float ReadValue(string exp)
         else
             error_msg="Close bracket missing.";
     else
+    {
         try
+        {
             val=stof(exp);
+        }
         catch (exception &ex)
+        {
             error_msg=ex.what();
+        }
+    }
     return val;
 }
 
