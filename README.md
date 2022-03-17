@@ -8,7 +8,6 @@ Test cases:<br>
 1 + 2 * (3 + 4 + 5 * (6 + 7)) &rarr; 145.0000<br>
 <br>
 Context-free grammar with the following production rules:<br>
-Expression = Term | Term + Expression |  Term - Expression<br>
-Term = Factor | Factor * Term | Factor / Term<br>
-Factor = Float | (Expression)<br>
-Float handled by stof<br>
+Expression = Product | Product + Expression |  Product - Expression<br>
+Product = Value | Value * Product | Value / Product<br>
+Value = float | (Expression)<br>
