@@ -6,6 +6,7 @@ Test cases:<br>
 1 + 2 * 3 &rarr; 7.0000<br>
 (1 + 2) * 3 &rarr; 9.0000<br>
 1 + 2 * (3 + 4 + 5 * (6 + 7)) &rarr; 145.0000<br>
+2 * (3 + 4 * (5 + 6 * (7 + 8 * (9 + 10.123456789)))) &rarr; 7725.407227<br>
 <br>
 Context-free grammar with the following production rules:<br>
 Expression = Product | Product + Expression |  Product - Expression<br>
