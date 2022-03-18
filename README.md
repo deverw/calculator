@@ -1,5 +1,5 @@
 # calculator
-C++ implementation to evaluate arithmetic expression with basic operations and brackets, considering "dots before dashes"-rule.<br>
+C++ implementation to evaluate arithmetic expression with basic operations and brackets, considering <q>dots before dashes</q>-rule.<br>
 Interpretation of input string using context-free grammar with the following rules:<br>
 &lt;Expression&gt;&ensp; = &ensp;&lt;Product&gt;&ensp; | &ensp;&lt;Product&gt; <code>+</code> &lt;Expression&gt;&ensp; |  &ensp;&lt;Product&gt; <code>-</code> &lt;Expression&gt;<br>
 &lt;Product&gt;&ensp; = &ensp;&lt;Value&gt;&ensp; | &ensp;&lt;Value&gt; <code>*</code> &lt;Product&gt;&ensp; | &ensp;&lt;Value&gt; <code>/</code> &lt;Product&gt;<br>
