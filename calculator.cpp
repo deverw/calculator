@@ -1,4 +1,4 @@
-// Context-free grammar with the following production rules:
+// Calculate numeric value of input expression, which is defined by a context-free grammar with the following production rules:
 // <Expression> = <Product> | <Product> + <Expression> |  <Product> - <Expression>
 // <Product> = <Value> | <Value> * <Product> | <Value> / <Product>
 // <Value> = float | (<Expression>)
@@ -56,7 +56,12 @@ size_t FindOp(string exp, char op1, char op2)
 
 float ReadValue(string exp)
 {
-    float val;
+    float val = 0;
+    if (!exp.length())
+    {
+        error_msg = "Expression missing.";
+        return val;
+    }
     if (exp.at(0) == '(')
         if (exp.at(exp.length() - 1) == ')')
             val = ReadExpression(exp.substr(1, exp.length() - 2));
